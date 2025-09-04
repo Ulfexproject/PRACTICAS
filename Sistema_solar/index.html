@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema Solar · ULFEX · PEEP</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="stage">
+    <!-- Estrellas -->
+    <div class="stars"></div>
+    <div class="stars stars--2"></div>
+    <div class="vignette"></div>
+
+    <!-- Título de entrada -->
+    <div class="title">
+      <div>Sistema Solar</div>
+      <span>ULFEX · PEEP</span>
+    </div>
+
+    <!-- CONTENEDOR ESCALABLE (para que todo quepa) -->
+    <div class="universe">
+      <!-- Sol -->
+      <div class="sun">
+        <div class="sun__core"></div>
+        <div class="sun__glow"></div>
+      </div>
+
+      <!-- ÓRBITAS + PLANETAS -->
+      <div class="orbit orbit--m"><div class="planet planet--m"></div></div>
+      <div class="orbit orbit--v"><div class="planet planet--v"></div></div>
+
+      <div class="orbit orbit--e">
+        <div class="planet planet--e">
+          <div class="moon-orbit"><div class="moon"></div></div>
+        </div>
+      </div>
+
+      <div class="orbit orbit--ma"><div class="planet planet--ma"></div></div>
+
+      <div class="belt"></div>
+
+      <div class="orbit orbit--j"><div class="planet planet--j"></div></div>
+
+      <div class="orbit orbit--s">
+        <div class="planet planet--s"><span class="rings"></span></div>
+      </div>
+
+      <div class="orbit orbit--u"><div class="planet planet--u"></div></div>
+      <div class="orbit orbit--n"><div class="planet planet--n"></div></div>
+    </div>
+
+    <!-- Contenedor donde inyectamos estrellas fugaces -->
+    <div class="shooting-layer"></div>
+
+    <!-- Marca/CTA -->
+    <div class="watermark">ULFEX · PEEP — Síguenos</div>
+    <div class="tip">🎥 TIP: Graba en 1080×1920 (Win+G / OBS). Oculta UI con “H”.</div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+

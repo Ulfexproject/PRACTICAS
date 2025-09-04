@@ -1,0 +1,142 @@
+:root{
+  --bg:#07090f; --ink:#c7d2fe; --orbit:#30384b; --orbit-soft:#212838;
+  --sun:#ffd24d; --white:#e5e7eb; --blue:#3aa6ff; --red:#ff5a4f;
+  --venus:#d7b48a; --mercury:#b7b7b7; --jupiter:#f2b179; --saturn:#fff1ad;
+  --uranus:#9de1ff; --neptune:#729bff;
+}
+*{ box-sizing:border-box; }
+html,body{ height:100%; margin:0; background:var(--bg); color:var(--white); overflow:hidden; font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter; }
+
+.stage{
+  position:fixed; inset:0; display:grid; place-items:center; perspective:1000px;
+}
+
+/* Fondo de estrellas */
+.stars, .stars--2{
+  position:absolute; inset:-20%;
+  background:
+    radial-gradient(2px 2px at 20% 30%, #fff, transparent 60%) repeat,
+    radial-gradient(1px 1px at 60% 70%, #dbeafe, transparent 60%) repeat,
+    radial-gradient(1px 1px at 80% 20%, #c7d2fe, transparent 60%) repeat;
+  background-size: 600px 600px, 500px 500px, 700px 700px;
+  filter: drop-shadow(0 0 6px #7dd3fc);
+  animation: twinkle 6s linear infinite; opacity:.7;
+}
+.stars--2{ animation-duration:10s; opacity:.45; filter:drop-shadow(0 0 10px #93c5fd); }
+@keyframes twinkle{ 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(20px) } }
+
+.vignette{ position:absolute; inset:0;
+  background: radial-gradient(circle at 50% 50%, transparent 50%, rgba(0,0,0,.35) 75%, rgba(0,0,0,.75) 100%); pointer-events:none; }
+
+/* Título */
+.title{ position:absolute; top:8vh; left:50%; transform:translateX(-50%); text-align:center; letter-spacing:.06em; mix-blend-mode:screen; animation:title-in 2.5s ease both; }
+.title div{ font-size:clamp(24px,4vw,44px); font-weight:800; text-shadow:0 6px 30px rgba(255,255,255,.15); }
+.title span{ display:block; margin-top:6px; font-size:clamp(12px,2.2vw,14px); color:#a5b4fc; opacity:.8; }
+@keyframes title-in{ 0%{ transform:translate(-50%,-20px); opacity:0 } 100%{ transform:translate(-50%,0); opacity:1 } }
+
+/* —— Ajuste para que TODO quepa —— */
+.universe{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:1360px;
+  height:1360px;          /* diámetro de la órbita más grande */
+  display:grid;
+  place-items:center;
+  transform-origin:center center;   /* MUY importante */
+  /* el translate/scale lo pone JS */
+}
+
+
+/* Sol */
+.sun{ position:absolute; width:220px; height:220px; border-radius:50%; display:grid; place-items:center; }
+.sun__core{
+  width:65%; height:65%; border-radius:50%;
+  background: radial-gradient(circle at 30% 30%, #fff7a1 0%, var(--sun) 55%, #ff9900 100%);
+  box-shadow: 0 0 40px 8px rgba(255,195,26,.6), inset 0 0 20px rgba(0,0,0,.25);
+  animation: sun-pulse 3.2s ease-in-out infinite;
+}
+.sun__glow{ position:absolute; inset:-35%;
+  background: radial-gradient(circle, rgba(255,174,0,.40), transparent 60%);
+  filter: blur(16px); border-radius:50%; animation: halo 8s linear infinite; }
+@keyframes sun-pulse{ 0%,100%{ transform:scale(1) } 50%{ transform:scale(1.05) } }
+@keyframes halo{ to{ transform:rotate(360deg) } }
+
+/* Órbitas */
+.orbit{ position:absolute; border:1px solid var(--orbit); border-radius:50%; animation:spin linear infinite; transform-style:preserve-3d; }
+.orbit::after{ content:""; position:absolute; inset:-2px; border-radius:50%; border:1px dashed var(--orbit-soft); opacity:.25; pointer-events:none; }
+@keyframes spin{ to{ transform:rotate(360deg) } }
+
+/* tamaños */
+.orbit--m { width:320px; height:320px; animation-duration: 7s; }
+.orbit--v { width:420px; height:420px; animation-duration:11s; }
+.orbit--e { width:520px; height:520px; animation-duration:15s; }
+.orbit--ma{ width:620px; height:620px; animation-duration:20s; }
+.belt     { position:absolute; width:760px; height:760px; border-radius:50%; pointer-events:none; }
+.orbit--j { width:880px; height:880px; animation-duration:40s; }
+.orbit--s { width:1040px; height:1040px; animation-duration:55s; }
+.orbit--u { width:1200px; height:1200px; animation-duration:70s; }
+.orbit--n { width:1360px; height:1360px; animation-duration:90s; }
+
+/* Planetas */
+.planet{ position:absolute; top:50%; left:0; transform:translate(-50%,-50%); border-radius:50%;
+  box-shadow: inset -8px -8px 16px rgba(0,0,0,.25), 0 0 12px rgba(255,255,255,.08); }
+.planet--m{ width:12px; height:12px; background:linear-gradient(135deg,#ddd,var(--mercury)); }
+.planet--v{ width:18px; height:18px; background:linear-gradient(135deg,#f3d5b0,var(--venus)); }
+.planet--e{ width:20px; height:20px; background:radial-gradient(circle at 30% 30%,#c4f1ff,var(--blue) 60%,#005a99 100%); }
+.planet--ma{ width:16px; height:16px; background:linear-gradient(135deg,#ffb3a6,var(--red)); }
+.planet--j{ width:42px; height:42px; background:linear-gradient(90deg,#f7caa1 0 20%,#e8a574 20% 40%,#f7caa1 40% 60%,#e8a574 60% 80%,#f7caa1 80% 100%); }
+.planet--s{ width:36px; height:36px; background:linear-gradient(135deg,#fff8cf,var(--saturn)); position:relative; }
+.planet--u{ width:28px; height:28px; background:linear-gradient(135deg,#d2f4ff,var(--uranus)); }
+.planet--n{ width:26px; height:26px; background:linear-gradient(135deg,#a8c0ff,var(--neptune)); }
+
+/* Luna */
+.moon-orbit{ position:absolute; inset:-20px; border-radius:50%; border:1px solid rgba(255,255,255,.15); animation:spin 3s linear infinite; }
+.moon{ position:absolute; top:50%; left:0; transform:translate(-50%,-50%); width:7px; height:7px; border-radius:50%; background:#ddd; box-shadow: inset -3px -3px 6px rgba(0,0,0,.25); }
+
+/* Anillos de Saturno */
+.rings{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) rotate(18deg); width:78px; height:78px; border-radius:50%; border:2px solid rgba(250,230,180,.8); box-shadow:0 0 10px rgba(255,240,200,.5); }
+.rings::before, .rings::after{ content:""; position:absolute; inset:-6px; border:2px solid rgba(245,220,170,.55); border-radius:50%; }
+.rings::after{ inset:-12px; border-color:rgba(245,220,170,.35); }
+
+/* Cinturón de asteroides */
+.belt::before{
+  content:""; position:absolute; inset:0; border-radius:50%;
+  background:
+    radial-gradient(1px 1px at 15% 60%, #cbd5e1, transparent 55%) repeat,
+    radial-gradient(1px 1px at 45% 35%, #94a3b8, transparent 55%) repeat,
+    radial-gradient(1px 1px at 70% 15%, #e2e8f0, transparent 55%) repeat;
+  background-size: 20px 20px, 18px 18px, 22px 22px;
+  mask: radial-gradient(circle, transparent 47%, #000 49%, #000 51%, transparent 53%);
+  opacity:.5; filter:blur(.4px);
+}
+
+/* Capa y estilos de estrellas fugaces */
+.shooting-layer{ position:absolute; inset:0; pointer-events:none; overflow:hidden; }
+.shooting-star{
+  position:absolute; width:10px; height:10px; border-radius:50%;
+  background:#fff; box-shadow:0 0 16px 6px rgba(255,255,255,.7);
+  transform: translate(-50%, -50%);
+}
+.shooting-star::after{
+  content:""; position:absolute; left:-180px; top:4px; width:190px; height:2px;
+  background:linear-gradient(90deg, transparent, rgba(173,216,255,.6), rgba(255,255,255,.95));
+  filter:blur(1px);
+}
+@keyframes shoot{
+  0%{ transform:translate(var(--sx), var(--sy)) rotate(var(--rot)) }
+  100%{ transform:translate(calc(var(--sx) + var(--dx)), calc(var(--sy) + var(--dy))) rotate(var(--rot)) }
+}
+
+/* UI */
+.watermark{ position:absolute; right:14px; bottom:12px; font-size:12px; color:#94a3b8; opacity:.7; letter-spacing:.08em; }
+.tip{ position:absolute; left:14px; bottom:12px; font-size:12px; color:#a5b4fc; opacity:.9; }
+
+/* Viaje de “cámara” base */
+.stage{ animation: cam 12s ease-in-out infinite; }
+@keyframes cam{ 0%{ transform:translateZ(0) rotateX(0deg) } 50%{ transform:translateZ(40px) rotateX(8deg) } 100%{ transform:translateZ(0) rotateX(0deg) } }
+
+/* Responsive leve */
+@media (max-width: 900px){ .watermark,.tip{ font-size:11px } }
+
+
