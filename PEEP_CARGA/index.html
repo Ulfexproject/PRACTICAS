@@ -1,0 +1,97 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Peep Lightning Intro</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="stage" id="stage">
+      <div class="grid" aria-hidden="true"></div>
+
+      <!-- Contenedor del logo / parallax -->
+      <div class="logo-wrap" id="tilt">
+        <div class="halo" aria-hidden="true"></div>
+
+        <!-- LOGO P (SVG) -->
+        <svg class="peep-logo" viewBox="0 0 512 512" role="img" aria-label="Peep logo">
+          <defs>
+            <linearGradient id="gradP" x1="0" x2="1">
+              <stop offset="0%" stop-color="var(--peep)" />
+              <stop offset="100%" stop-color="var(--peep-2)" />
+            </linearGradient>
+            <filter id="squish" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="6" />
+            </filter>
+          </defs>
+          <!-- Círculo base -->
+          <circle cx="256" cy="256" r="165" fill="url(#gradP)" opacity=".18" filter="url(#squish)" />
+          <!-- Letra P -->
+          <path
+            d="M180 360V150h94c62 0 100 34 100 82 0 47-36 80-98 80h-44v48h-52zm52-100h44c31 0 50-13 50-30 0-18-17-32-50-32h-44v62z"
+            fill="url(#gradP)"
+          />
+        </svg>
+
+        <!-- Rayo -->
+        <svg class="bolt" viewBox="0 0 512 512" aria-hidden="true">
+          <defs>
+            <linearGradient id="grad" x1="0" x2="1">
+              <stop offset="0%" stop-color="var(--peep)" />
+              <stop offset="100%" stop-color="var(--peep-2)" />
+            </linearGradient>
+          </defs>
+          <path d="M276 40 L200 230 L278 230 L230 472 L404 220 L330 220 L388 40 Z" />
+        </svg>
+
+        <!-- ===== Loader debajo de la P ===== -->
+        <div class="peep-loader inside" id="peepLoader" role="status" aria-live="polite">
+          <div class="pl-label">
+            <span>L</span><span>O</span><span>A</span><span>D</span><span>I</span><span>N</span><span>G</span>
+            <strong class="pl-percent" id="plPercent">0%</strong>
+          </div>
+
+          <div class="pl-track">
+            <!-- Badge flotante que sigue el progreso -->
+            <div class="pl-float" id="plFloat">
+              <span id="plFloatNum">0%</span>
+            </div>
+
+            <!-- Lobo corriendo que sigue el progreso -->
+            <svg class="wolf-icon" id="wolfIcon" viewBox="0 0 64 32" aria-hidden="true">
+              <defs>
+                <linearGradient id="wgrad" x1="0" x2="1">
+                  <stop offset="0%" stop-color="var(--peep)"/>
+                  <stop offset="100%" stop-color="var(--peep-2)"/>
+                </linearGradient>
+              </defs>
+              <path d="M9 20c3-1 5-3 7-6l4-6 7 3 6-1 4 3 7 2-3 4-6-1-4 3-8-1-6 3-7-2z" fill="url(#wgrad)"/>
+              <path d="M47 11l6 2 2 3-3 1-6-2z" fill="url(#wgrad)"/>
+            </svg>
+
+            <div class="pl-fill" id="plFill"></div>
+            <div class="pl-orb" id="plOrb" aria-hidden="true"></div>
+          </div>
+        </div>
+        <!-- ================================== -->
+      </div>
+
+      <!-- Flash breve al terminar -->
+      <div class="flash" aria-hidden="true"></div>
+
+      <!-- Título (subido + shimmer) -->
+      <div class="title">LOADING... ⚡</div>
+
+      <!-- CTA -->
+      <div class="cta">
+        <a class="btn" href="#" id="replay"><span class="dot"></span>Repetir animación</a>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
+
+
