@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🌼 Flores Amarillas — Edición ULTRA</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="stars"></canvas>
+
+  <div class="scene">
+    <div class="legend">
+      <h1>💛 Flores Amarillas — Edición ULTRA</h1>
+      <p>Deja que florezca la magia ✨</p>
+    </div>
+
+    <div class="field" id="field"></div>
+
+    <!-- Ramo central animado -->
+    <div class="bouquet-container">
+      <svg class="bouquet" viewBox="0 0 800 450">
+        <g>
+          <path d="M380,360 C360,340 340,330 330,330 C320,330 305,338 300,350 
+          C295,362 305,370 315,372 C330,375 350,370 370,360"
+          fill="var(--stem)" opacity=".9"/>
+          <path d="M420,360 C440,340 460,330 470,330 C480,330 495,338 500,350 
+          C505,362 495,370 485,372 C470,375 450,370 430,360"
+          fill="var(--stem)" opacity=".9"/>
+          <circle cx="400" cy="355" r="18" fill="var(--accent-2)" />
+        </g>
+        <g stroke="var(--stem)" stroke-width="8" stroke-linecap="round" opacity=".85">
+          <path d="M400,355 Q380,260 300,210"/>
+          <path d="M400,355 Q430,250 520,200"/>
+          <path d="M400,355 Q400,245 400,180"/>
+        </g>
+        <g fill="var(--leaf)" opacity=".9">
+          <path d="M360,260 C330,250 310,235 300,210 C330,215 350,230 360,260"/>
+          <path d="M440,260 C470,250 490,235 500,210 C470,215 450,230 440,260"/>
+        </g>
+        <g transform="translate(300 200) scale(1.2)"><use href="#flower-head"/></g>
+        <g transform="translate(520 190) scale(1.15)"><use href="#flower-head"/></g>
+        <g transform="translate(400 165) scale(1.4)"><use href="#flower-head"/></g>
+        <defs>
+          <g id="flower-head">
+            <g fill="var(--accent)" stroke="rgba(0,0,0,.15)" stroke-width="1">
+              <path d="M0,-36 C10,-34 18,-22 16,-10 C14,2 4,10 0,16 
+              C-4,10 -14,2 -16,-10 C-18,-22 -10,-34 0,-36Z" transform="rotate(0)"/>
+              <path d="M0,-36 ...Z" transform="rotate(45)"/>
+              <path d="M0,-36 ...Z" transform="rotate(90)"/>
+              <path d="M0,-36 ...Z" transform="rotate(135)"/>
+              <path d="M0,-36 ...Z" transform="rotate(180)"/>
+              <path d="M0,-36 ...Z" transform="rotate(225)"/>
+              <path d="M0,-36 ...Z" transform="rotate(270)"/>
+              <path d="M0,-36 ...Z" transform="rotate(315)"/>
+            </g>
+            <circle cx="0" cy="0" r="14" fill="var(--accent-2)" />
+          </g>
+        </defs>
+      </svg>
+    </div>
+
+    <div class="hud">
+      <button id="togglePlay">⏸ Pausar</button>
+      <button id="toggleRain">🌧️ Lluvia ON</button>
+      <input id="intensity" type="range" min="10" max="40" value="25" step="1"/>
+      <button id="clear">🧹 Limpiar</button>
+    </div>
+  </div>
+
+  <template id="flowerTemplate">
+    <svg class="flower" viewBox="-50 -50 100 100">
+      <ellipse cx="0" cy="30" rx="16" ry="6" fill="rgba(0,0,0,.25)"/>
+      <path d="M0,16 C 2,30 4,42 2,50" stroke="var(--stem)" stroke-width="4" fill="none"/>
+      <path d="M2,32 C10,28 14,22 12,16 C8,18 4,22 2,32 Z" fill="var(--leaf)"/>
+      <g>
+       <defs>
+  <g id="flower-head">
+    <g fill="var(--accent)" stroke="rgba(0,0,0,.15)" stroke-width="1">
+      <!-- 8 pétalos completos -->
+      <path d="M0,-36 C10,-34 18,-22 16,-10 C14,2 4,10 0,16 
+      C-4,10 -14,2 -16,-10 C-18,-22 -10,-34 0,-36Z" transform="rotate(0)"/>
+      <path d="M0,-36 C10,-34 18,-22 16,-10 C14,2 4,10 0,16 
+      C-4,10 -14,2 -16,-10 C-18,-22 -10,-34 0,-36Z" transform="rotate(45)"/>
+      <path d="M0,-36 C10,-34 18,-22 16,-10 C14,2 4,10 0,16 
+      C-4,10 -14,2 -16,-10 C-18,-22 -10,-34 0,-36Z" transform="rotate(90)"/>
+      <path d="M0,-36 C10,-34 18,-22 16,-10 C14,2 4,10 0,16 
+      C-4,10 -14,2 -16,-10 C-18,-22 -10,-34 0,-36Z" transform="rotate(135)"/>
+      <path d="M0,-36 C10,-34 18,-22 16,-10 C14,2 4,10 0,16 
+      C-4,10 -14,2 -16,-10 C-18,-22 -10,-34 0,-36Z" transform="rotate(180)"/>
+      <path d="M0,-36 C10,-34 18,-22 16,-10 C14,2 4,10 0,16 
+      C-4,10 -14,2 -16,-10 C-18,-22 -10,-34 0,-36Z" transform="rotate(225)"/>
+      <path d="M0,-36 C10,-34 18,-22 16,-10 C14,2 4,10 0,16 
+      C-4,10 -14,2 -16,-10 C-18,-22 -10,-34 0,-36Z" transform="rotate(270)"/>
+      <path d="M0,-36 C10,-34 18,-22 16,-10 C14,2 4,10 0,16 
+      C-4,10 -14,2 -16,-10 C-18,-22 -10,-34 0,-36Z" transform="rotate(315)"/>
+    </g>
+    <circle cx="0" cy="0" r="14" fill="var(--accent-2)" />
+  </g>
+</defs>
+
+    </svg>
+  </template>
+
+  <script src="scrip.js"></script>
+</body>
+</html>
+
